@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Nadya's Culinary Blog</title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="/">Here's the blog about Culinary</a></h1>
+        </div>
+            {% for post in all_posts %}
+                <div>
+                    <p>Published on: {{ post.date_published }}</p>
+                    <h1><a href="/">{{ post.title }}</a></h1>
+                    <p>{{ post.text|linebreaksbr }}</p>
+                </div>
+            {% endfor %}
+    </body>
+</html>
