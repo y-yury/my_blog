@@ -1,19 +1,13 @@
-<html>
-    <head>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <title>Nadya's Culinary Blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Here's the blog about Culinary</a></h1>
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for post in all_posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.date_published }}
+            </div>
         </div>
-            {% for post in all_posts %}
-                <div>
-                    <p>Published on: {{ post.date_published }}</p>
-                    <h1><a href="/">{{ post.title }}</a></h1>
-                    <p>{{ post.text|linebreaksbr }}</p>
-                </div>
-            {% endfor %}
-    </body>
-</html>
+        <h1> <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+        <p>{{ post.text|linebreaksbr }}</p>
+    {% endfor %}
+{% endblock content %}

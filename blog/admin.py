@@ -5,7 +5,8 @@ from .models import MyPost
 
 
 class MyPostAdmin(admin.ModelAdmin):
-    list_display = ('author', 'date_created', 'date_published', 'title')
+    list_display = ('title', 'author', 'date_created', 'date_published')
+    list_display_links = ('title',)
     search_fields = ('text', 'title')
 
 admin.site.register(MyPost, MyPostAdmin)
