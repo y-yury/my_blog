@@ -8,28 +8,35 @@
     font-size: 36pt;
     text-decoration: none;
     padding: 15px;
+    /* margin-left: 15px; */
 }
 
 .content {
-    padding: 15px;
+    padding: 0px;
+    margin-left: 15px;
 }
 
-.h1, h2, h3, h4 {
+.h1 {
+    color: rgba(165, 158, 158, 0.85);
     font-style: normal;
+    font-size: 20px;
     padding: 15px;
+    margin-left: 35px;
 }
 
 .date {
     color: #828282;
     padding: 0;
+    font-size: 12;
 }
 
-.save {
-    float: right;
+.save, .save-btn {
+    float: left;
+    margin-left: 19px;
 }
 
 .post-form textarea, .post-form input {
-    width: 100%;
+    width: 50%;
 }
 
 .top-menu, .top-menu:hover, .top-menu:visited {
@@ -48,5 +55,5 @@
 .post h1 a, .post h1 a:visited {
     color: #8CB4FA;
     padding: 0;
-    margin-left: 0;
+    margin-left: 15px;
 }
