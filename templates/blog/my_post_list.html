@@ -1,13 +1,20 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    {% for post in all_posts %}
-        <div class="post">
-            <div class="date">
-                {{ post.date_published }}
-            </div>
+        <div class="page-authenticate">
+            {% if user.is_authenticated %}
+                <a class="top-menu">Welcome back, {{ user.username }}!<small>(<a href="{% url 'logout' %}">Log out</a>)
+                </small></a>
+                <a class="new-btn" href="{% url 'post_new' %}"><button>Add something?</button></a>
+            {% else %}
+                <a class="top-menu" href="{% url 'login' %}"></a>
+            {% endif %}
         </div>
+    {% for post in all_posts %}
         <h1> <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+        <div class="date">
+            Published on {{ post.date_published }}
+        </div>
         <p>{{ post.text|linebreaksbr }}</p>
     {% endfor %}
 {% endblock content %}

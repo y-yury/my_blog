@@ -2,16 +2,24 @@
 
 {% block content %}
     <div class="h1">
-        <h1>Write something here</h1>
+        <h1>Leave your thoughts here</h1>
     </div>
+
     <div class="post">
-        <div class="post-form textarea">
-            <form method="POST" class="post-form">{% csrf_token %}
-                {{ form.as_p }}
-            <div class="save">
-                <button type="submit" class="save-btn">Save</button>
+        {% if user.is_authenticated %}
+            <div class="post-form textarea">
+                <form method="POST" class="post-form">{% csrf_token %}
+                    {{ form.as_p }}
+                <div class="save">
+                    <button type="submit" class="save-btn">Save</button>
+                </div>
+                <div class="clear">
+                    <button type="reset" class="clear-btn">Clear</button>
+                </div>
+                </form>
             </div>
-            </form>
-        </div>
+        {% else %}
+                <a class="top-menu" href="{% url 'login' %}"></a>
+        {% endif %}
     </div>
 {% endblock %}
