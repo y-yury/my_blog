@@ -5,7 +5,7 @@ from .models import MyPost
 
 
 class MyPostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'date_created', 'date_published')
+    list_display = ('title', 'author', 'date_drafted', 'date_published')
     list_display_links = ('title',)
     search_fields = ('text', 'title')
 

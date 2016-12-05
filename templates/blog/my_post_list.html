@@ -17,8 +17,6 @@
                 <a class="new-btn" href="{% url 'post_new' %}"><button>Add something?</button></a>
             </div>
         </div>
-    {% else %}
-        <a class="top-menu" href="{% url 'login' %}"></a>
     {% endif %}
 
     {% for post in all_posts %}

@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+    <div class="sidebar-block">
+        <div class="sidebar-block-inset">
+        <h4>Hey there!</h4>
+        <p>My name's Yury and I'm here to tell you<br>a few words about healthy living))</p>
+        </div>
+    </div>
+
+    <div class="sidebar-block">
+        <div class="sidebar-block-inset">
+            <p>Welcome back, {{ user.username }}!<small>(<a href="{% url 'logout' %}">Log out</a>)</small>
+            <a class="new-btn" href="{% url 'post_new' %}"><button>Add something?</button></a>
+        </div>
+    </div>
+
+    {% for draft in all_drafts %}
+
+        <div class="post">
+            <h1><a href="{% url 'post_detail' pk=draft.pk %}">{{ draft.title }}</a></h1>
+            <div class="date">
+                Drafted on {{ draft.date_drafted }}
+            </div>
+            <p>{{ draft.text|linebreaksbr }}</p>
+        </div>
+
+    {% endfor %}
+
+{% endblock content %}

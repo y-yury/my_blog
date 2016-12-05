@@ -104,6 +104,10 @@
     margin-left: 18px;
 }
 
+.publish, .publish-btn {
+    float: none;
+}
+
 .clear, .clear-btn {
     float: left;
     margin-left: 2px;
