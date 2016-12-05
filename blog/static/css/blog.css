@@ -108,6 +108,10 @@
     float: none;
 }
 
+.unpublish, .unpublish-btn {
+    float: none;
+}
+
 .clear, .clear-btn {
     float: left;
     margin-left: 2px;
