@@ -58,18 +58,21 @@ def post_edit(request, pk):
     return render(request, 'blog/post_edit.html', {'form': form})
 
 
+@login_required
 def post_publish(request, pk):
     post = get_object_or_404(MyPost, pk=pk)
     post.publish_post()
     return redirect('post_detail', pk=pk)
 
 
+@login_required
 def post_unpublish(request, pk):
     post = get_object_or_404(MyPost, pk=pk)
     post.unpublish_post()
     return redirect('my_post_list')
 
 
+@login_required
 def post_delete(request, pk):
     post = get_object_or_404(MyPost, pk=pk)
     post.delete_post()
