@@ -21,5 +21,9 @@ class MyPost(models.Model):
         self.date_published = timezone.now()
         self.delete()
 
+    def unpublish_post(self):
+        self.date_published = self.date_unpublished
+        self.save()
+
     def __str__(self):
         return self.title

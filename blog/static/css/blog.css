@@ -99,17 +99,9 @@
     margin-left: 19px;
 }
 
-.edit, .edit-btn {
+.btn, .btn-default, .btn-primary, .btn-success, .btn-danger {
     float: none;
-    margin-left: 18px;
-}
-
-.publish, .publish-btn {
-    float: none;
-}
-
-.unpublish, .unpublish-btn {
-    float: none;
+    margin-left: 15px;
 }
 
 .clear, .clear-btn {

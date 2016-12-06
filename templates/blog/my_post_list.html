@@ -14,7 +14,7 @@
         <div class="sidebar-block">
             <div class="sidebar-block-inset">
                 <p>Welcome back, {{ user.username }}!<small>(<a href="{% url 'logout' %}">Log out</a>)</small>
-                <a class="new-btn" href="{% url 'post_new' %}"><button>Add something?</button></a>
+                <a type="button" class="btn btn-default" href="{% url 'post_new' %}">Add something?</a>
             </div>
         </div>
     {% endif %}

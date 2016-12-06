@@ -10,12 +10,8 @@
             <div class="post-form textarea">
                 <form method="POST" class="post-form">{% csrf_token %}
                     {{ form.as_p }}
-                <div class="save">
-                    <button type="submit" class="save-btn">Save</button>
-                </div>
-                <div class="clear">
-                    <button type="reset" class="clear-btn">Clear</button>
-                </div>
+                    <input type="submit" class="btn btn-success" value="Save">
+                    <input type="reset" class="btn btn-default" value="Clear">
                 </form>
             </div>
         {% endif %}

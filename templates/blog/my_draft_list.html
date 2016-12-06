@@ -12,14 +12,16 @@
     <div class="sidebar-block">
         <div class="sidebar-block-inset">
             <p>Welcome back, {{ user.username }}!<small>(<a href="{% url 'logout' %}">Log out</a>)</small>
-            <a class="new-btn" href="{% url 'post_new' %}"><button>Add something?</button></a>
+            <a type="button" class="btn btn-default" href="{% url 'post_new' %}">Add something?</a>
         </div>
     </div>
 
     {% for draft in all_drafts %}
 
         <div class="post">
-            <h1><a href="{% url 'post_detail' pk=draft.pk %}">{{ draft.title }}</a></h1>
+            <h1><a href="{% url 'draft_detail' pk=draft.pk %}">{{ draft.title }}</a></h1>
+                <a type="button" class="btn btn-default" href="{% url 'post_edit' pk=draft.pk %}">Edit</a>
+                <a type="button" class="btn btn-danger" href="{% url 'post_delete' pk=draft.pk %}">Delete</a>
             <div class="date">
                 Drafted on {{ draft.date_drafted }}
             </div>

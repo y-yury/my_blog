@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+    <div class="post">
+        <h1>{{ draft.title }}</h1>
+        <div class="date">
+            {% if draft.date_drafted %}
+                Drafted on {{ draft.date_drafted }}
+            {% endif %}
+        </div>
+        <p>{{ draft.text|linebreaksbr }}</p>
+    </div>
+
+{% endblock %}

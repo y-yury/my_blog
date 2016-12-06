@@ -24,6 +24,12 @@ def post_detail(request, pk):
 
 
 @login_required
+def draft_detail(request, pk):
+    draft = get_object_or_404(MyPost, pk=pk)
+    return render(request, 'blog/draft_detail.html', {'draft': draft})
+
+
+@login_required
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -56,6 +62,12 @@ def post_publish(request, pk):
     post = get_object_or_404(MyPost, pk=pk)
     post.publish_post()
     return redirect('post_detail', pk=pk)
+
+
+def post_unpublish(request, pk):
+    post = get_object_or_404(MyPost, pk=pk)
+    post.unpublish_post()
+    return redirect('my_post_list')
 
 
 def post_delete(request, pk):
