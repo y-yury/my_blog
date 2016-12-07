@@ -32,7 +32,7 @@ def draft_detail(request, pk):
 @login_required
 def post_new(request):
     if request.method == "POST":
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
@@ -51,6 +51,7 @@ def post_edit(request, pk):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
+            post.date_modified = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
@@ -62,7 +63,7 @@ def post_edit(request, pk):
 def post_publish(request, pk):
     post = get_object_or_404(MyPost, pk=pk)
     post.publish_post()
-    return redirect('post_detail', pk=pk)
+    return redirect('my_post_list')
 
 
 @login_required

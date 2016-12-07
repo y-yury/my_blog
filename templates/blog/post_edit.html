@@ -8,7 +8,7 @@
     <div class="post">
         {% if user.is_authenticated %}
             <div class="post-form textarea">
-                <form method="POST" class="post-form">{% csrf_token %}
+                <form method="POST" enctype="multipart/form-data" class="post-form">{% csrf_token %}
                     {{ form.as_p }}
                     <input type="submit" class="btn btn-success" value="Save">
                     <input type="reset" class="btn btn-default" value="Clear">

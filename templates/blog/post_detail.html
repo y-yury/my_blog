@@ -3,23 +3,34 @@
 {% block content %}
 
     <div class="page-authenticate">
+
          {% if user.is_authenticated %}
              <a type="button" class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">Edit</a>
              <a type="button" class="btn btn-warning" href="{% url 'post_unpublish'  pk=post.pk %}">Unpublish</a>
              <a type="button" class="btn btn-danger" href="{% url 'post_delete' pk=post.pk %}">Delete</a>
          {% endif %}
+
     </div>
 
     <div class="post">
 
         <h1>{{ post.title }}</h1>
         <div class="date">
+
             {% if post.date_published %}
                 Published on {{ post.date_published }}
-            {% else %}
-                <a type="button" class="btn btn-success" href="{% url 'post_publish'  pk=post.pk %}">Publish</a>
             {% endif %}
+
         </div>
-        <p>{{ post.text|linebreaksbr }}</p>
+
+        {% if post.image %}
+            <div class="img-responsive">
+                <img src="{{ post.image.url }}" class="img-rounded">
+            </div>
+            <p>{{ post.text|linebreaksbr }}</p>
+        {% else %}
+            <p>{{ post.text|linebreaksbr }}</p>
+        {% endif %}
+
     </div>
 {% endblock %}

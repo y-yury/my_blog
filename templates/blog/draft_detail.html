@@ -3,13 +3,25 @@
 {% block content %}
 
     <div class="post">
+
         <h1>{{ draft.title }}</h1>
         <div class="date">
-            {% if draft.date_drafted %}
+            {% if draft.date_modified %}
+                Modified on {{ draft.date_modified }}
+            {% else %}
                 Drafted on {{ draft.date_drafted }}
             {% endif %}
         </div>
-        <p>{{ draft.text|linebreaksbr }}</p>
+
+        {% if draft.image %}
+            <div class="img-responsive">
+                <img src="{{ draft.image.url }}" class="img-rounded">
+            </div>
+            <p>{{ draft.text|linebreaksbr }}</p>
+        {% else %}
+            <p>{{ draft.text|linebreaksbr }}</p>
+        {% endif %}
+
     </div>
 
 {% endblock %}
