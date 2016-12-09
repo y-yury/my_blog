@@ -1,0 +1,23 @@
+<html>
+<head>
+    <title>Search</title>
+        <body>
+            <p>You searched for '{{ query }}'</p>
+
+                {% if search %}
+
+                <p>Luckily, we have found {{ search|length }} post {{ search|pluralize }} based on your search</p>
+                <ul>
+                    {% for search_result in search %}
+                    <li>{{ search_result.text }}</li>
+                    {% endfor %}
+                </ul>
+
+                {% else %}
+
+                <p>No related query has been found, sorry</p>
+
+                {% endif %}
+        </body>
+</head>
+</html>

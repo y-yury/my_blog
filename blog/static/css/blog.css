@@ -1,5 +1,5 @@
 .page-masthead {
-    background-color: #F5F5F5;
+    background-color: #8CB4FA;
     -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
     box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
 }
@@ -10,7 +10,7 @@
     padding: 10px;
     font-weight: 500;
     font-size: 15px;
-    color: #828282;
+    color: #E8E8E8;
 }
 
 .page-nav-item:hover, .page-nav-item:focus {
@@ -54,6 +54,15 @@
     font-size: 36pt;
     text-decoration: none;
     padding: 15px;
+    margin-top: 50px;
+}
+
+.page-footer {
+    padding: 15px 15px;
+    color: #E8E8E8;
+    text-align: left;
+    background-color: #324658;
+    border-top: 7px solid rgba(232,229,229,0.98);
 }
 
 .page-authenticate {
@@ -87,7 +96,7 @@
 
 .h4 {
     color: #828282;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .date {

@@ -1,0 +1,26 @@
+<html>
+<head>
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Home</a>
+                    <a class="navbar-brand" href="#">Traditional Cuisine</a>
+                    <a class="navbar-brand" href="#">Dietary Food</a>
+
+                    <form class="navbar-form navbar-left" role="search" action="/post/search/" method="GET">
+                        <div class="form-group">
+                            <input type="text" name="query" class="form-control" placeholder="Looking for...">
+                        </div>
+                        <button type="submit" class="btn btn-default" href="{% url 'post_search' %}">Search</button>
+                    </form>
+
+                    {% if user.is_authenticated %}
+                        <p class="navbar-text navbar-right">Signed in as {{ user.username }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </body>
+</head>
+</html>

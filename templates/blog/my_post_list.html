@@ -2,13 +2,6 @@
 
 {% block content %}
 
-    <div class="sidebar-block">
-        <div class="sidebar-block-inset">
-        <h4>Hey there!</h4>
-        <p>My name's Yury and I'm here to tell you<br>a few words about healthy living))</p>
-        </div>
-    </div>
-
     {% if user.is_authenticated %}
 
         <div class="sidebar-block">
@@ -17,6 +10,16 @@
                 <a type="button" class="btn btn-default" href="{% url 'post_new' %}">Add something?</a>
             </div>
         </div>
+
+        {% else %}
+
+        <div class="sidebar-block">
+            <div class="sidebar-block-inset">
+                <h4>Hey there!</h4>
+                <p>My name's Yury and I'm here to tell you<br>a few words about healthy living))</p>
+            </div>
+        </div>
+
     {% endif %}
 
     {% for post in all_posts %}
@@ -29,6 +32,7 @@
 
             <p>{{ post.text|linebreaksbr }}</p>
         </div>
+
     {% endfor %}
 
 {% endblock content %}

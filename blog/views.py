@@ -59,6 +59,20 @@ def post_edit(request, pk):
     return render(request, 'blog/post_edit.html', {'form': form})
 
 
+def post_search(request):
+    errors_list = []
+    if 'query' in request.GET:
+        query = request.GET['query']
+        if not 'query':
+            errors_list.append("Please enter a search term")
+        elif len(query) < 1:
+            errors_list.append("No letters allowed for search")
+        else:
+            search = MyPost.objects.filter(text__icontains=query)
+            return render(request, 'blog/search_result.html', {'search': search, 'query': query})
+    return render(request, 'blog/search_errors.html', {'errors_list': errors_list})
+
+
 @login_required
 def post_publish(request, pk):
     post = get_object_or_404(MyPost, pk=pk)
