@@ -63,6 +63,8 @@
     text-align: left;
     background-color: #324658;
     border-top: 7px solid rgba(232,229,229,0.98);
+    margin-top: 120px;
+    margin-bottom: 15px;
 }
 
 .page-authenticate {

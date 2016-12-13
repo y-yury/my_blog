@@ -4,9 +4,19 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Home</a>
-                    <a class="navbar-brand" href="#">Traditional Cuisine</a>
-                    <a class="navbar-brand" href="#">Dietary Food</a>
+
+                    {% if user.is_authenticated %}
+                        <a class="navbar-brand" href="{% url 'my_draft_list' %}">Drafts</a>
+                        <a class="navbar-brand" href="#">Comments</a>
+                        <a class="navbar-brand" href="#">Archive</a>
+
+                    {% else %}
+                        <a class="navbar-brand" href="{% url 'login' %}">Login</a>
+                        <a class="navbar-brand" href="#">Traditional Cuisine</a>
+                        <a class="navbar-brand" href="#">Dietary Food</a>
+                        <a class="navbar-brand" href="#">Desserts</a>
+
+                    {% endif %}
 
                     <form class="navbar-form navbar-left" role="search" action="/post/search/" method="GET">
                         <div class="form-group">
@@ -17,6 +27,7 @@
 
                     {% if user.is_authenticated %}
                         <p class="navbar-text navbar-right">Signed in as {{ user.username }}</p>
+
                     {% endif %}
                 </div>
             </div>

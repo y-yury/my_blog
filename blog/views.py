@@ -66,7 +66,7 @@ def post_search(request):
         if not 'query':
             errors_list.append("Please enter a search term")
         elif len(query) < 1:
-            errors_list.append("No letters allowed for search")
+            errors_list.append("No empty search is allowed, please try again")
         else:
             search = MyPost.objects.filter(text__icontains=query)
             return render(request, 'blog/search_result.html', {'search': search, 'query': query})

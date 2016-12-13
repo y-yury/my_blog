@@ -1,23 +1,35 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+    {% if query %}
+
 <html>
 <head>
-    <title>Search</title>
-        <body>
-            <p>You searched for '{{ query }}'</p>
+    <body>
+        <div class="post">
+                <h4><p>You searched for '{{ query }}'</p></h4>
 
                 {% if search %}
 
-                <p>Luckily, we have found {{ search|length }} post {{ search|pluralize }} based on your search</p>
-                <ul>
-                    {% for search_result in search %}
-                    <li>{{ search_result.text }}</li>
-                    {% endfor %}
-                </ul>
+                    <p>Luckily, we have found {{ search|length }} post {{ search|pluralize }} based on your search
+                    with the following text:</p>
+                    <ul>
+                        {% for search_result in search %}
+                        <li>{{ search_result.text }}</li>
+                        {% endfor %}
+                    </ul>
 
                 {% else %}
 
-                <p>No related query has been found, sorry</p>
+                    <p>No related query has been found, sorry</p>
 
                 {% endif %}
-        </body>
+        </div>
+    </body>
 </head>
 </html>
+
+    {% endif %}
+
+{% endblock content %}
