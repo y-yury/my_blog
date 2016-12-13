@@ -14,6 +14,7 @@ class MyPost(models.Model):
     date_published = models.DateTimeField(blank=True, null=True)
     date_unpublished = models.DateTimeField(blank=True, null=True)
     date_modified = models.DateTimeField(blank=True, null=True)
+    date_archived = models.DateTimeField(blank=True, null=True)
 
     def publish_post(self):
         self.date_published = timezone.now()
@@ -27,5 +28,24 @@ class MyPost(models.Model):
         self.date_published = self.date_unpublished
         self.save()
 
+    def archive_post(self):
+        self.date_published = self.date_archived
+        self.save()
+
     def __str__(self):
         return self.title
+
+
+class MyComment(models.Model):
+    post = models.ForeignKey('blog.MyPost', related_name='post_comments')
+    author = models.CharField(max_length=250)
+    text = models.TextField()
+    date_drafted = models.DateTimeField(default=timezone.now)
+    comment_approved = models.BooleanField(default=False)
+
+    def approve_comment(self):
+        self.comment_approved = True
+        self.save()
+
+    def __str__(self):
+        return self.text

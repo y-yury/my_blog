@@ -33,4 +33,21 @@
         {% endif %}
 
     </div>
+
+<hr>
+<a class="btn btn-default" href="{% url 'post_comment' pk=post.pk %}">Add your comment</a>
+
+{% for comment in post.post_comments.all %}
+
+    <div class="post-comment">
+        <div class="date">Commented on {{ comment.date_drafted }} by {{ comment.author }}</div>
+        <p>{{ comment.text|linebreaks }}</p>
+    </div>
+
+{% empty %}
+    <div class="post-comment">
+        <p>No comments have been submitted yet</p>
+    </div>
+{% endfor %}
+
 {% endblock %}

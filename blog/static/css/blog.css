@@ -142,3 +142,7 @@
 .post h1 a:hover {
     color: #6D89BB;
 }
+
+.post-comment {
+    margin-left: 15px;
+}

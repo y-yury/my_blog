@@ -1,8 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import MyPost
-from .forms import PostForm
+from .models import MyPost, MyComment
+from .forms import PostForm, CommentForm
 
 # Create your views here.
 
@@ -10,6 +10,11 @@ from .forms import PostForm
 def my_post_list(request):
     all_posts = MyPost.objects.filter(date_published__lte=timezone.now()).order_by('-date_published')
     return render(request, 'blog/my_post_list.html', {'all_posts': all_posts})
+
+
+#def my_comments_list(request):
+#    all_comments = MyComment.objects.filter(comment_approved=False).order_by('-date_drafted')
+#    return render(request, 'blog/my_comments_list.html', {'all_comments': all_comments})
 
 
 @login_required
@@ -92,3 +97,17 @@ def post_delete(request, pk):
     post = get_object_or_404(MyPost, pk=pk)
     post.delete_post()
     return redirect('my_post_list')
+
+
+def post_comment(request, pk):
+    post = get_object_or_404(MyPost, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'blog/post_comment.html', {'form': form})
