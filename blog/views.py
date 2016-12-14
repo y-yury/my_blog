@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import MyPost, MyComment
@@ -7,14 +8,10 @@ from .forms import PostForm, CommentForm
 # Create your views here.
 
 
-def my_post_list(request):
-    all_posts = MyPost.objects.filter(date_published__lte=timezone.now()).order_by('-date_published')
-    return render(request, 'blog/my_post_list.html', {'all_posts': all_posts})
-
-
-#def my_comments_list(request):
-#    all_comments = MyComment.objects.filter(comment_approved=False).order_by('-date_drafted')
-#    return render(request, 'blog/my_comments_list.html', {'all_comments': all_comments})
+@login_required
+def my_comments_list(request):
+    all_comments = MyComment.objects.filter(comment_approved=False).order_by('-date_drafted')
+    return render(request, 'blog/my_comments_list.html', {'all_comments': all_comments})
 
 
 @login_required
@@ -111,3 +108,12 @@ def post_comment(request, pk):
     else:
         form = CommentForm()
     return render(request, 'blog/post_comment.html', {'form': form})
+
+
+# Enabling pagination over a queryset
+class PostListView(ListView):
+    model = MyPost
+    context_object_name = 'posts'
+    paginate_by = 5
+    queryset = MyPost.objects.filter(date_published__lte=timezone.now()).order_by('-date_published')
+    template_name = 'blog/my_post_list.html'

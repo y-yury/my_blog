@@ -1,11 +1,13 @@
 from django.conf.urls import url
 from . import views
+from .views import PostListView
 
 urlpatterns = [
-    url(r'^$', views.my_post_list, name='my_post_list'),
+    url(r'^$', PostListView.as_view(), name='my_post_list'),
     url(r'^post/new/$', views.post_new, name='post_new'),
     url(r'^post/search/$', views.post_search, name='post_search'),
     url(r'^post/draft/$', views.my_draft_list, name='my_draft_list'),
+    url(r'^post/comments/$', views.my_comments_list, name='my_comment_list'),
     url(r'^post/draft/(?P<pk>[0-9]+)/$', views.draft_detail, name='draft_detail'),
     url(r'^post/(?P<pk>[0-9]+)/$', views.post_detail, name='post_detail'),
     url(r'^post/(?P<pk>[0-9]+)/edit/$', views.post_edit, name='post_edit'),

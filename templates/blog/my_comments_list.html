@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+    {% for comment in all_comments %}
+
+        <div class="post">
+            <div class="date">
+                    Drafted on {{ comment.date_drafted }} by {{ comment.author }}
+            </div>
+
+            <p>{{ comment.text|linebreaksbr }}</p>
+        </div>
+
+    {% endfor %}
+
+{% endblock content %}
