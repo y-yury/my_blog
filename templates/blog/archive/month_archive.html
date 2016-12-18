@@ -1,0 +1,26 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+    <ul>
+        {% for article in archive %}
+            <li>{{ article.date_published|date:"F j, Y" }}:
+                <a href="{% url 'post_detail' pk=article.pk %}">{{ article.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <p>
+        {% if previous_month %}
+            Previous Month: {{ previous_month|date:"F Y" }}
+        {% endif %}
+
+        {% if next_month %}
+            Next Month: {{ next_month|date:"F Y" }}
+        {% endif %}
+    </p>
+
+    {% endif %}
+
+{% endblock content %}

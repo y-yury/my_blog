@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+        {% for draft in drafts %}
+
+            <div class="post">
+                <h1><a href="{% url 'draft_detail' pk=draft.pk %}">{{ draft.title }}</a></h1>
+                    <a type="button" class="btn btn-success" href="{% url 'post_publish'  pk=draft.pk %}">Publish</a>
+                    <a type="button" class="btn btn-default" href="{% url 'post_edit' pk=draft.pk %}">Edit</a>
+                    <a type="button" class="btn btn-danger" href="{% url 'post_delete' pk=draft.pk %}">Delete</a>
+
+                <div class="date">
+                    {% if draft.date_modified %}
+                        Modified on {{ draft.date_modified }}
+                    {% else %}
+                        Drafted on {{ draft.date_drafted }}
+                    {% endif %}
+                </div>
+
+                <p>{{ draft.text|linebreaksbr }}</p>
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+{% include 'blog/pagination.html' %}
+{% endblock content %}
