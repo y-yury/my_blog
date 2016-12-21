@@ -12,11 +12,12 @@
 
                 {% if search %}
 
-                    <p>Luckily, we have found {{ search|length }} post {{ search|pluralize }} based on your search
-                    with the following text:</p>
+                    <p>Luckily, we have found {{ search|length }} post {{ search|pluralize }} based on your search:</p>
                     <ul>
                         {% for search_result in search %}
-                        <li>{{ search_result.text }}</li>
+                        <li>Post title: <a href="{% url 'post_detail' pk=search_result.pk %}">{{ search_result.title }}</a>
+                        </li>
+                            <small>{{ search_result.text }}</small>
                         {% endfor %}
                     </ul>
 

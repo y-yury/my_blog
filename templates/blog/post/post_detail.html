@@ -39,10 +39,19 @@
 
 {% for comment in post.post_comments.all %}
 
-    <div class="post-comment">
-        <div class="date">Commented on {{ comment.date_drafted }} by {{ comment.author }}</div>
-        <p>{{ comment.text|linebreaks }}</p>
-    </div>
+    {% if user.is_authenticated or comment.comment_approved %}
+        <div class="post-comment">
+            <div class="date">Commented on {{ comment.date_drafted }} by {{ comment.author }}</div>
+
+            {% if not comment.comment_approved %}
+                <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}">Remove comment</a>
+                <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}">Approve comment</a>
+            {% endif %}
+
+            <p>{{ comment.text|linebreaks }}</p>
+        </div>
+
+    {% endif %}
 
 {% empty %}
     <div class="post-comment">

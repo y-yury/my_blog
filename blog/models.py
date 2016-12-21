@@ -47,5 +47,8 @@ class MyComment(models.Model):
         self.comment_approved = True
         self.save()
 
+    def remove_comment(self):
+        self.delete()
+
     def __str__(self):
         return self.text

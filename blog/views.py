@@ -110,6 +110,21 @@ def post_comment(request, pk):
     return render(request, 'blog/comment/post_comment.html', {'form': form})
 
 
+# Enabling comments' moderation
+@login_required
+def comment_approve(request, pk):
+    comment = get_object_or_404(MyComment, pk=pk)
+    comment.approve_comment()
+    return redirect('post_detail', pk=comment.post.pk)
+
+
+@login_required
+def comment_remove(request, pk):
+    comment = get_object_or_404(MyComment, pk=pk)
+    comment.remove_comment()
+    return redirect('post_detail', pk=comment.post.pk)
+
+
 # Enabling pagination over a queryset
 class PostListView(ListView):
     model = MyPost
