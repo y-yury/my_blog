@@ -12,7 +12,9 @@ from .forms import PostForm, CommentForm
 @login_required
 def my_comments_list(request):
     all_comments = MyComment.objects.filter(comment_approved=False).order_by('-date_drafted')
-    return render(request, 'blog/comment/my_comments_list.html', {'all_comments': all_comments})
+    comments_count = len(all_comments)
+    return render(request, 'blog/comment/my_comments_list.html',
+                  {'all_comments': all_comments, 'comments_count': comments_count})
 
 
 # Getting details of post & draft items
@@ -103,6 +105,7 @@ def post_comment(request, pk):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = post
+            comment.comment_unread = True
             comment.save()
             return redirect('post_detail', pk=post.pk)
     else:
