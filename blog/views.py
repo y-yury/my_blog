@@ -12,7 +12,7 @@ from .forms import PostForm, CommentForm
 @login_required
 def my_comments_list(request):
     all_comments = MyComment.objects.filter(comment_approved=False).order_by('-date_drafted')
-    comments_count = len(all_comments)
+    comments_count = MyComment.objects.filter(comment_approved=False).count()
     return render(request, 'blog/comment/my_comments_list.html',
                   {'all_comments': all_comments, 'comments_count': comments_count})
 

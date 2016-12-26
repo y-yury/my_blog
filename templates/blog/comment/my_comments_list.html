@@ -1,7 +1,9 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-<p>Currently you have <strong>{{ comments_count }} comments</strong> not yet approved</p>
+    <div class="post">
+        <p>Currently you have <strong>{{ comments_count }} comments</strong> not yet approved</p>
+    </div>
 
     {% for comment in all_comments %}
         <div class="post">
