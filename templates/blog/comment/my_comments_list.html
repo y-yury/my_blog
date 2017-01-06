@@ -9,6 +9,8 @@
         <div class="post">
             <div class="date">
                     Drafted on {{ comment.date_drafted }} by {{ comment.author }}
+                    in <a href="{% url 'post_detail' pk=comment.post.pk %}">{{ comment.post.title }}</a>
+
             </div>
 
             <p>{{ comment.text|linebreaksbr }}</p>
