@@ -13,11 +13,13 @@
 
     <p>
         {% if previous_month %}
-            Previous Month: {{ previous_month|date:"F Y" }}
+            Previous Month: <a href="{% url 'month_archive' year='2016' month='dec' %}">
+            {{ previous_month|date:"F Y" }}</a>
         {% endif %}
 
         {% if next_month %}
-            Next Month: {{ next_month|date:"F Y" }}
+            Next Month: <a href="{% url 'month_archive' year='2017' month='jan' %}">
+            {{ next_month|date:"F Y" }}</a>
         {% endif %}
     </p>
 
