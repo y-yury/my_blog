@@ -1,1 +1,7 @@
 Django==1.10.3
+psycopg2==2.4.5
+virtualenv==15.1.0
+Pillow==3.4.2
+gunicorn==19.6.0
+dj-database-url==0.4.2
+whitenoise==3.2.3

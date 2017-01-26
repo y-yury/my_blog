@@ -11,6 +11,7 @@
         {% endfor %}
     </ul>
 
+    <div class="month-archive">
     <p>
         {% if previous_month %}
             Previous Month: <a href="{% url 'month_archive' year='2016' month='dec' %}">
@@ -22,7 +23,7 @@
             {{ next_month|date:"F Y" }}</a>
         {% endif %}
     </p>
-
+    </div>
     {% endif %}
 
 {% endblock content %}

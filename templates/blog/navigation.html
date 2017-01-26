@@ -13,9 +13,11 @@
                                 {{ comments_count }}</span></a>
 
                         {% else %}
-                            <a class="navbar-brand" href="{% url 'my_comment_list' %}">My Comments</a>
+                            <a class="navbar-brand" href="{% url 'my_comment_list' %}">My Comments <span class="badge">
+                                {{ comments_count }}</span></a>
 
                         {% endif %}
+
                         <a class="navbar-brand" href="{% url 'month_archive' year='2016' month='dec' %}">My Archive</a>
 
                     {% else %}
